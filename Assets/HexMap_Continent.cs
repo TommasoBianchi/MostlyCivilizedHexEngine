@@ -28,7 +28,6 @@ public class HexMap_Continent : HexMap {
 
                 ElevateArea(x, y, range);
             }
-
         }
 
         // Add lumpiness Perlin Noise?
@@ -88,7 +87,7 @@ public class HexMap_Continent : HexMap {
         {
             //if(h.Elevation < 0)
                 //h.Elevation = 0;
-            
+                
             h.Elevation = centerHeight * Mathf.Lerp( 1f, 0.25f, Mathf.Pow(Hex.Distance(centerHex, h) / range,2f) );
         }
     }

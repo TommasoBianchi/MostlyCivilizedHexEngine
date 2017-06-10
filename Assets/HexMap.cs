@@ -202,13 +202,26 @@ public class HexMap : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Pick hexes around a center one within a given range.
+    /// If range = 0 returns only the centerHex.
+    /// </summary>
+    /// <param name="centerHex">The center hex</param>
+    /// <param name="range">The maximum distance between a selected hex and the centerHex</param>
+    /// <returns>An unordered array of hexes containing all the selected ones</returns>
     public Hex[] GetHexesWithinRangeOf(Hex centerHex, int range)
     {
+        if(centerHex == null || range < 0)
+        {
+            Debug.LogError("HexMap::GetHexesWithinRangeOf cannot be called with centerHex = " + centerHex + " and range = " + range);
+            return new Hex[] { };
+        }
+
         List<Hex> results = new List<Hex>();
 
-        for (int dx = -range; dx < range-1; dx++)
+        for (int dx = -range; dx < range + 1; dx++)
         {
-            for (int dy = Mathf.Max(-range+1, -dx-range); dy < Mathf.Min(range, -dx+range-1); dy++)
+            for (int dy = Mathf.Max(-range, -dx-range); dy < Mathf.Min(range, -dx+range) + 1; dy++)
             {
                 results.Add( GetHexAt(centerHex.Q + dx, centerHex.R + dy) );
             }
