@@ -219,9 +219,9 @@ public class HexMap : MonoBehaviour {
 
         List<Hex> results = new List<Hex>();
 
-        for (int dx = -range; dx < range + 1; dx++)
+        for (int dx = -range; dx <= range; dx++)
         {
-            for (int dy = Mathf.Max(-range, -dx-range); dy < Mathf.Min(range, -dx+range) + 1; dy++)
+            for (int dy = Mathf.Max(-range, -dx-range); dy <= Mathf.Min(range, -dx+range); dy++)
             {
                 results.Add( GetHexAt(centerHex.Q + dx, centerHex.R + dy) );
             }
